@@ -1,0 +1,10 @@
+{
+  "name": "users",
+  "version": "0.1.0-beta",
+  "description": "",
+  "dependencies": {
+    "nano": "",
+    "underscore": "",
+    "async": ""
+  }
+}
