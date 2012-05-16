@@ -45,7 +45,9 @@ auth.fetch.user(
 
 ## .config
 
-Contains key/value configurations used throughout the library. The only two important ones right now are `dbhost`, which is the URI to your running couchdb, and `dbname`, which is the name of the database to use on `dbhost`.
+Contains key/value configurations used throughout the library. The only two
+important ones right now are `dbhost`, which is the URI to your running
+couchdb, and `dbname`, which is the name of the database to use on `dbhost`.
 
 ### .config.set
 
@@ -65,7 +67,7 @@ Return the value of a key that has been set.
 
 ## .create
 
-Create Auth objects
+Create Auth objects.
 
 ### .create.user
 
@@ -73,4 +75,14 @@ Create a user and save it to the database.
 
 *usage*: `auth.create.user(<email>, <password>, <callback>)`
 
+### .create.voucher
+
+Create a voucher for a user. Vouchers can be used for email varification or
+password resets. Their `_id`s are unique and can be used in URLs.
+
+*usage*: `auth.create.voucher(<voucher_type>, <user_id>, <callback>)`
+
+
+# TODO
+- finish writing this readme
 
