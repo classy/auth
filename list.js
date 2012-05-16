@@ -25,19 +25,6 @@ function latestUsers(){
 }
 
 
-// function earliestUserActions(){
-//   var user_id = arguments[0];
-//   var options = arguments.length === 3 ? arguments[1] : {};
-//   var callback = arguments[arguments.length -1] || function(){};
-// 
-//   var default_view_options = {
-//     startkey: [user_id],
-//     endkey: [user_id + '\u9999']
-//   }
-// }
-
-
-
 
 module.exports = {
   earliest: {

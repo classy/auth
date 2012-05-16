@@ -29,11 +29,12 @@ function createUser(email, password, callback){
 }
 
 
-function createEmailVarificationVoucher(user_id, callback){
+function createVoucher(voucher_name, user_id, callback){
   var callback = callback || function(){};
 
   var voucher = {
-    type: 'email_varification_voucher',
+    type: 'voucher',
+    name: voucher_name,
     creation_date: new Date(),
     user: {
       _id: user_id
@@ -44,44 +45,9 @@ function createEmailVarificationVoucher(user_id, callback){
 }
 
 
-function createPasswordResetVoucher(user_id, callback){
-  var callback = callback || function(){};
-
-  var voucher = {
-    type: 'password_reset_voucher',
-    creation_date: new Date(),
-    user: {
-      _id: user_id
-    }
-  }
-}
-
-
-function createAction(user_id, verb, subject){
-  var callback = callback || function(){};
-
-  var action = {
-    type: 'action',
-    creation_date: new Date(),
-    user: {
-      _id: user_id
-    },
-    verb: verb,
-    subject: {
-      _id: subject._id, 
-      type: subject.type
-    }
-  }
-
-  ops.save(action, callback);
-}
-
-
 
 
 module.exports = {
   user: createUser,
-  emailVarificationVoucher: createEmailVarificationVoucher,
-  passwordResetVoucher: createPasswordResetVoucher,
-  action: createAction
+  voucher: createVoucher
 }
