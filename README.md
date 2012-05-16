@@ -18,27 +18,29 @@ auth.create.user(
   'password123', 
   function(err, res){
     console.log(res); 
-    // => { ok: true,
-    //      id: '8bb64c66c8e46092abb94cccf4042a58',
-    //      rev: '1-71caa06243b9bcc43979c334df03e8a3' }
   }
 );
+
+// => { ok: true,
+//      id: '8bb64c66c8e46092abb94cccf4042a58',
+//      rev: '1-71caa06243b9bcc43979c334df03e8a3' }
 
 // Fetch the new user
 auth.fetch.user(
   '8bb64c66c8e46092abb94cccf4042a58', 
   function(err, res){
     console.log(res);
-    // => { _id: '8bb64c66c8e46092abb94cccf4042a58',
-    //      _rev: '1-71caa06243b9bcc43979c334df03e8a3',
-    //      email: 'me@example.com',
-    //      creation_date: '2012-05-16T22:15:49.533Z',
-    //      type: 'user',
-    //      password: 
-    //        { salt: 'qn4cThUOfeIMdfTb',
-    //          hex: '4341d0b06c7a85840e94b34b32bc173d',
-    //          algo: 'md5' } } }
 );
+
+// => { _id: '8bb64c66c8e46092abb94cccf4042a58',
+//      _rev: '1-71caa06243b9bcc43979c334df03e8a3',
+//      email: 'me@example.com',
+//      creation_date: '2012-05-16T22:15:49.533Z',
+//      type: 'user',
+//      password: 
+//        { salt: 'qn4cThUOfeIMdfTb',
+//          hex: '4341d0b06c7a85840e94b34b32bc173d',
+//          algo: 'md5' } } }
 ```
 
 # API
@@ -84,5 +86,6 @@ password resets. Their `_id`s are unique and can be used in URLs.
 
 
 # TODO
+
 - finish writing this readme
 
