@@ -1,0 +1,8 @@
+{
+  "dbname": "auth",
+  "dbhost": "http://localhost:5984",
+  "password_algo": "pbkdf2",
+  "password_iter": 5000,
+  "password_salt_length": 16,
+  "password_key_length": 16
+}
