@@ -8,7 +8,7 @@ var auth = require('./');
 
 // Hook it up to a couchdb
 auth.config.set({
-	dbhost: 'http://localhost:5984',
+  dbhost: 'http://localhost:5984',
   dbname: 'auth'
 });
 
