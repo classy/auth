@@ -78,7 +78,13 @@ function modifyEmail(user_id, email, callback){
 function modifyPassword(user_id, password, callback){
   var callback = callback || function(){};
 
-  modifyDocumentField(user_id, 'password', utils.createPassword(password), callback);
+  utils.createPassword(password, function(password_creation_error, password_object){
+    if (password_creation_error){
+      return callback(password_creation_error, null);
+    }
+
+    return modifyDocumentField(user_id, 'password', password_object, callback);
+  });
 }
 
 
