@@ -20,33 +20,33 @@ function authenticate(email, password, callback){
 
     user = view_result.rows[0].value;
 
-    var password_hex = null;
+    var password_digest = null;
 
     if (user.password.algo === 'pbkdf2'){
       crypto.pbkdf2(
         password, 
         user.password.salt, 
         user.password.iter, 
-        user.password.hex.length /2, 
+        user.password.digest.length /2, 
         function(pbkdf2_error, key){
           if (pbkdf2_error){
             return callback(pbkdf2_error, null);
           }
 
-          password_hex = new Buffer(key, 'binary').toString('hex');
+          password_digest = new Buffer(key, 'binary').toString('hex');
 
-          return password_hex === user.password.hex ? 
+          return password_digest === user.password.digest ? 
             callback(null, user) : callback(errors.incorrectPassword(), null);
         }
       );
     }
 
     if (user.password.algo === 'md5'){
-      password_hex = crypto.createHash('md5')
+      password_digest = crypto.createHash('md5')
         .update(user.password.salt + password)
         .digest('hex');
 
-      return password_hex === user.password.hex ? 
+      return password_digest === user.password.digest ? 
         callback(null, user) : callback(errors.incorrectPassword(), null);
     }
   });
