@@ -97,6 +97,8 @@ function atomicOperation(doc_id, operation, callback){
 
 
 module.exports = {
+  initNano: initNano,
+  initDb: initDb,
   save: save,
   fetch: fetch,
   view: viewOrInsertDesign,
