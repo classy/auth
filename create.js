@@ -49,7 +49,38 @@ function createUser(email, password, callback){
 }
 
 
-function createVoucher(voucher_name, user_id, callback){
+function createAction(user_id, verb, subject, callback){
+  var callback = callback || function(){};
+
+  utils.exists(user_id, function(existence_error, exists){
+    if (existence_error){
+      return callback(existence_error, null);
+    }
+
+    if (exists === false){
+      return callback(
+        errors.notFound('User "'+ user_id +'" not found.'), null);
+    }
+
+    var new_action = {
+      user: {
+        _id: user_id
+      },
+      type: 'action',
+      creation_date: new Date(),
+      verb: verb,
+      subject: {
+        _id: subject._id,
+        type: subject.type
+      }
+    }
+
+    ops.save(new_action, callback); 
+  });
+}
+
+
+function createVoucher(user_id, voucher_name, callback){
   var callback = callback || function(){};
 
   utils.exists(user_id, function(existence_error, exists){
@@ -70,7 +101,7 @@ function createVoucher(voucher_name, user_id, callback){
       }
     }
 
-    return ops.save(new_voucher, null);
+    return ops.save(new_voucher, callback);
   });
 }
 
@@ -79,5 +110,6 @@ function createVoucher(voucher_name, user_id, callback){
 
 module.exports = {
   user: createUser,
+  action: createAction,
   voucher: createVoucher
 }
