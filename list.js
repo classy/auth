@@ -4,7 +4,6 @@ var _ = require('underscore');
 
 
 function earliestUsers(){
-
   var view_options = arguments.length === 2 ? arguments[0] : {};
   var callback = arguments[arguments.length -1];
 
