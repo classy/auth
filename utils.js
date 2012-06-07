@@ -22,7 +22,15 @@ function getHeaders(id, callback){
 
 function exists(id, callback){
   getHeaders(id, function(headers_error, headers){
-    callback(headers_error, headers ? headers['status-code'] === 200 : null);
+    if (headers_error){
+      if (headers_error['status-code'] === 404){
+        return callback(null, false);
+      }
+
+      return callback(headers_error, null);
+    }
+
+    return callback(null, true);
   });
 }
 
@@ -53,13 +61,13 @@ function createPassword(){
         return callback(err, null);
       }
 
-      var hex = new Buffer(key, 'binary').toString('hex');
+      var digest = new Buffer(key, 'binary').toString('hex');
 
       return callback(null, {
         algo: algo,
         salt: salt,
         iter: iter, 
-        hex: hex
+        digest: digest
       });
 
     });
@@ -69,7 +77,7 @@ function createPassword(){
     return callback(null, {
       algo: 'md5',
       salt: salt,
-      hex: crypto.createHash('md5').update(salt + password).digest('hex')
+      digest: crypto.createHash('md5').update(salt + password).digest('hex')
     });
   }
 
