@@ -18,7 +18,7 @@ function authenticate(email, password, callback){
       );
     }
 
-    user = view_result.rows[0].value;
+    var user = view_result.rows[0].value;
 
     var password_digest = null;
 
