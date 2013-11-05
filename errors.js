@@ -56,5 +56,17 @@ module.exports = {
       error: 'config_error',
       message: message
     }
+  },
+  alreadyMarked: function(mark_name){
+    return {
+      error: 'already_marked',
+      message: 'This document is already marked "'+ mark_name +'".'
+    }
+  },
+  notMarked: function(mark_name){
+    return {
+      error: 'not_marked',
+      message: 'This document is not marked "'+ mark_name +'".'
+    }
   }
 }
