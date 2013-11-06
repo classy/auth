@@ -7,6 +7,7 @@ try {
 
 module.exports = {
   config: config,
+  models: require('./models'),
   create: require('./create'),
   fetch: require('./fetch'),
   modify: require('./modify'),
