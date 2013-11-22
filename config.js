@@ -14,7 +14,7 @@ module.exports = (function(){
     },
 
     get: function(key){
-      return configs[key];
+      return key ? configs[key] : configs;
     }
   }
 })()
