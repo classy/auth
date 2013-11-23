@@ -180,5 +180,32 @@ User.prototype.unmark = function unmarkUser(mark_name, callback){
 }
 
 
+User.prototype.preference = function setUserPreference(){
+  var self = this;
+  var key;
+  var value;
+  var callback = arguments[arguments.length -1];
+  
+  switch(arguments.length){
+    case 2: key = arguments[0]; break;
+    case 3: key = arguments[0]; value = arguments[1]; break;
+  }
+
+  self.read(function(read_error, doc_body){
+    if (read_error) return callback(read_error, null);
+    var preferences = doc_body.preferences || {};
+    preferences[key] = value;
+
+    if (preferences[key] === undefined) delete preferences[key];
+
+    if (!Object.keys(preferences).length){
+      preferences = undefined;
+    }
+
+    return self.updateField('preferences', preferences, callback);
+  });
+}
+
+
 
 module.exports = User;
