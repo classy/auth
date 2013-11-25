@@ -44,7 +44,8 @@ Doc.prototype.create = function createDoc(doc_body, callback){
     case 2: var callback = arguments[1]; var doc_body = arguments[0]; break;
   }
 
-  doc_body.type = this.type;
+  doc_body.type = self.type;
+  doc_body._id = typeof self.id === 'string' ? self.id : undefined;
 
   self.tmp.doc_body = doc_body;
   self.validate(function(validation_error, validation_result){
