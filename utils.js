@@ -1,38 +1,6 @@
-var crypto = require('crypto');
 var _ = require('underscore');
 var config = require('./config');
-var ops = require('./ops');
 var errors = require('./errors');
-
-
-function getHeaders(id, callback){
-  var nano = ops.initNano();
-
-  request_options = {
-    db: config.get('dbname'),
-    doc: id,
-    method: 'HEAD'
-  }
-
-  nano.request(request_options, function(request_error, result, headers){
-    callback(request_error, headers);
-  });
-}
-
-
-function exists(id, callback){
-  getHeaders(id, function(headers_error, headers){
-    if (headers_error){
-      if (headers_error['status-code'] === 404){
-        return callback(null, false);
-      }
-
-      return callback(headers_error, null);
-    }
-
-    return callback(null, true);
-  });
-}
 
 
 function createPassword(){
@@ -88,6 +56,5 @@ function createPassword(){
 
 
 module.exports = {
-  createPassword: createPassword,
-  exists: exists
+  createPassword: createPassword
 }
