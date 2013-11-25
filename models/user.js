@@ -40,6 +40,9 @@ User.identify = function identifyUserByEmail(email, callback){
 };
 
 
+User.createPassword = utils.createPassword;
+
+
 User.prototype = new Doc();
 
 
