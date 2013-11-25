@@ -52,7 +52,15 @@ User.prototype.validate = function validateUser(callback){
     return callback(validation_error, null);
   }
 
-  return Doc.prototype.validate.call(self, callback);
+  var email = self.tmp.doc_body.email;
+
+  User.identify(email, function(identification_error, user){
+    if (user){
+      return callback(errors.emailInUse(email), null);
+    }
+
+    return Doc.prototype.validate.call(self, callback);
+  });
 }
 
 
