@@ -55,19 +55,16 @@ User.prototype.validate = function validateUser(callback){
     return callback(validation_error, null);
   }
 
-  if (!self.tmp.doc_body._rev){
-    var email = self.tmp.doc_body.email;
+  var tmp_doc_body = self.tmp.doc_body;
+  var email = tmp_doc_body.email;
 
-    return User.identify(email, function(identification_error, user){
-      if (user){
-        return callback(errors.emailInUse(email), null);
-      }
+  User.identify(email, function(identification_error, user){
+    if (user && user._id !== tmp_doc_body._id){
+      return callback(errors.emailInUse(email), null);
+    }
 
-      return Doc.prototype.validate.call(self, callback);
-    });
-  }
-
-  return Doc.prototype.validate.call(self, callback);
+    return Doc.prototype.validate.call(self, callback);
+  });
 }
 
 
