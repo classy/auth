@@ -1,6 +1,6 @@
 var util = require('util');
 var config = require('../config');
-var _ = require('lodash');
+var _ = require('underscore');
 var EventEmitter = require('events').EventEmitter;
 var db = require('./db').db;
 var nano = require('./db').nano;

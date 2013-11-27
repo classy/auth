@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var crypto = require('crypto');
 
 var Doc = require('./doc');
