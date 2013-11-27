@@ -8,5 +8,9 @@
   "couchdb": {
     "host": "http://username:password@localhost:5984",
     "database": "auth"
+  },
+  "couchdb_testing": {
+    "host": "http://username:password@localhost:5984",
+    "database": "auth_testing"
   }
 }
