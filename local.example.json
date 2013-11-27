@@ -4,5 +4,9 @@
   "password_algo": "pbkdf2",
   "password_iter": 5000,
   "password_salt_length": 16,
-  "password_key_length": 16
+  "password_key_length": 16,
+  "couchdb": {
+    "host": "http://username:password@localhost:5984",
+    "database": "auth"
+  }
 }
