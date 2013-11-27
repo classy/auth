@@ -1,4 +1,4 @@
-var _ = require('lodash');
+var crypto = require('crypto');
 
 var Doc = require('./doc');
 var db = require('./db').db;
