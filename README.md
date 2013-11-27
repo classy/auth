@@ -2,9 +2,18 @@
 
 A simple node.js authentication library that persists to a CouchDB. 
 
+
+# Installation
+
+```bash
+npm install
+```
+
+
 ## Example
 ```javascript
 var auth = require('./');
+var User = auth.models.User;
 
 // Hook it up to a couchdb
 auth.config.set({
@@ -13,25 +22,23 @@ auth.config.set({
 });
 
 // Create a user
-auth.create.user(
-  'me@example.com', 
-  'password123', 
-  function(err, res){
-    console.log(res); 
+var new_user = new User();
+new_user.create({
+  email: 'user@example.com', 
+  password: 'muchauth'
+  }, function(err, result){
+    console.log('User creation results:', res);
   }
 );
-
 // => { ok: true,
 //      id: '8bb64c66c8e46092abb94cccf4042a58',
 //      rev: '1-71caa06243b9bcc43979c334df03e8a3' }
 
-// Fetch the new user
-auth.fetch.user(
-  '8bb64c66c8e46092abb94cccf4042a58', 
-  function(err, res){
-    console.log(res);
-);
+new_user.id;
+// > '8bb64c66c8e46092abb94cccf4042a58'
 
+
+new_user.read(console.log);
 // => { _id: '8bb64c66c8e46092abb94cccf4042a58',
 //      _rev: '1-71caa06243b9bcc43979c334df03e8a3',
 //      email: 'me@example.com',
@@ -41,51 +48,6 @@ auth.fetch.user(
 //        { salt: 'qn4cThUOfeIMdfTb',
 //          hex: '4341d0b06c7a85840e94b34b32bc173d',
 //          algo: 'md5' } } }
+
+new_user.authenticate('muchauth', console.log);
 ```
-
-# API
-
-## .config
-
-Contains key/value configurations used throughout the library. The only two
-important ones right now are `dbhost`, which is the URI to your running
-couchdb, and `dbname`, which is the name of the database to use on `dbhost`.
-
-### .config.set
-
-Set a key to a given value.
-
-*usage*: 
-- `config.set(<key>, <value>)`
-- `config.set({<key:value>, <key:value>...})`
-
-
-### .config.get
-
-Return the value of a key that has been set.
-
-*usage*: `config.get('<key>')`
-
-
-## .create
-
-Create Auth objects.
-
-### .create.user
-
-Create a user and save it to the database.
-
-*usage*: `auth.create.user(<email>, <password>, <callback>)`
-
-### .create.voucher
-
-Create a voucher for a user. Vouchers can be used for email varification or
-password resets. Their `_id`s are unique and can be used in URLs.
-
-*usage*: `auth.create.voucher(<voucher_type>, <user_id>, <callback>)`
-
-
-# TODO
-
-- finish writing this readme
-
