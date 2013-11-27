@@ -72,8 +72,18 @@ User.prototype.create = function createUser(
   doc_body,
   callback
 ){
+  var self = this;
+
   doc_body.type = 'user';
-  Doc.prototype.create.call(this, doc_body, callback);
+  utils.createPassword(doc_body.password, function(
+    password_error, 
+    password_object
+  ){
+    if (password_error) return callback(password_error, null);
+    doc_body.password = password_object;
+
+    Doc.prototype.create.call(self, doc_body, callback);
+  });
 }
 
 
