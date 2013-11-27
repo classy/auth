@@ -10,6 +10,14 @@ npm install
 ```
 
 
+
+## Testing
+
+```bash
+npm test
+```
+
+
 ## Example
 ```javascript
 var auth = require('./');

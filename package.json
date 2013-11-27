@@ -2,9 +2,16 @@
   "name": "users",
   "version": "0.1.0-beta",
   "description": "",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha -u tdd"
+  },
   "dependencies": {
     "nano": "",
     "underscore": "",
     "async": ""
+  },
+  "devDependencies": {
+    "should": "~2.1.0",
+    "mocha": "~1.14.0"
   }
 }
