@@ -78,6 +78,7 @@ User.prototype.create = function createUser(
 
 
 User.prototype.email = function changeEmail(new_email, callback){
+  var self = this;
   db().view(
     'users', 
     'by_email', 
@@ -88,7 +89,7 @@ User.prototype.email = function changeEmail(new_email, callback){
         return callback(errors.emailInUse(new_email), null);
       }
 
-      this.updateField('email', new_email, callback);
+      self.updateField('email', new_email, callback);
     }
   );
 }
