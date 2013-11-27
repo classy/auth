@@ -1,4 +1,6 @@
 var _ = require('underscore');
+var crypto = require('crypto');
+
 var config = require('./config');
 var errors = require('./errors');
 
