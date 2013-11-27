@@ -3,7 +3,11 @@ var _ = require('underscore');
 
 
 module.exports = (function(){
-  var configs = {}
+  try {
+    var configs = require('./local');
+  } catch (e){
+    var configs = {};
+  }
 
   return {
     set: function(key, value){
