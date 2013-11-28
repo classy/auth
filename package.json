@@ -1,14 +1,18 @@
 {
-  "name": "users",
-  "version": "0.1.0-beta",
-  "description": "",
+  "name": "auth",
+  "version": "0.1.0",
+  "description": "A simple Auth library that plugs into CouchDB",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/classy/auth.git"
+  },
   "scripts": {
     "test": "node_modules/mocha/bin/mocha -u tdd"
   },
   "dependencies": {
-    "nano": "",
-    "underscore": "",
-    "async": ""
+    "nano": "4.1.4",
+    "underscore": "1.5.2",
+    "async": "0.2.9"
   },
   "devDependencies": {
     "should": "~2.1.0",
