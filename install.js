@@ -22,7 +22,20 @@ function install(callback){
         if (!get_error) { return async_callback(null, result) }
 
         if (get_error.status_code === 404){
-          return nano.db.create(db_name, async_callback);
+          return nano.db.create(db_name, function(
+            creation_error, 
+            creation_result
+          ){
+            if (creation_error){
+              if (creation_error.error == 'file_exists'){
+                return async_callback(null, null);
+              }
+
+              return async_callback(creation_error, null);
+            }
+            
+            return async_callback(null, creation_result)
+          });
         }
 
         return async_callback(get_error, null);
